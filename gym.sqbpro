@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="gym.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1525"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="billing" custom_title="0" dock_id="1" table="4,7:mainbilling"/><dock_state state="000000ff00000000fd00000001000000020000000000000000fc0100000001fb000000160064006f0063006b00420072006f00770073006500310100000000ffffffff0000011300ffffff000000000000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1*">PRAGMA foreign_keys = ON;
+
+-- ===============================
+-- Drop tables if they already exist
+-- ===============================
+DROP TABLE IF EXISTS billing;
+DROP TABLE IF EXISTS trainers;
+DROP TABLE IF EXISTS members;
+DROP TABLE IF EXISTS plans;
+
+-- ===============================
+-- Plans Table
+-- ===============================
+CREATE TABLE plans (
+  code TEXT PRIMARY KEY,
+  label TEXT NOT NULL,
+  duration_months INTEGER NOT NULL,
+  price INTEGER NOT NULL
+);
+
+-- ===============================
+-- Members Table
+-- ===============================
+CREATE TABLE members (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  join_date DATE NOT NULL,
+  plan_code TEXT NOT NULL,
+  end_date DATE NOT NULL,
+  FOREIGN KEY (plan_code) REFERENCES plans(code)
+);
+
+-- ===============================
+-- Trainers Table
+-- ===============================
+CREATE TABLE trainers (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  specialization TEXT,
+  salary INTEGER NOT NULL DEFAULT 0
+);
+
+-- ===============================
+-- Billing Table
+-- ===============================
+CREATE TABLE billing (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  member_id INTEGER NOT NULL,
+  member_name TEXT NOT NULL,
+  amount INTEGER NOT NULL,
+  date_paid DATE NOT NULL,
+  FOREIGN KEY (member_id) REFERENCES members(id)
+);
+
+-- ===============================
+-- Seed Plans Data
+-- ===============================
+INSERT INTO plans (code, label, duration_months, price) VALUES
+('1M', '1 Month', 1, 1000),
+('3M', '3 Months', 3, 2500),
+('6M', '6 Months', 6, 4500),
+('12M', '12 Months', 12, 8000),
+('WT1', 'Weight Training (1 Month)', 1, 1000),
+('WT3', 'Weight Training (3 Months)', 3, 3000),
+('WT6', 'Weight Training (6 Months)', 6, 5500),
+('WT12', 'Weight Training (12 Months)', 12, 9000),
+('CF3', 'CrossFit (3 Months)', 3, 4000);
+
+-- ===============================
+-- Optional Sample Data
+-- ===============================
+INSERT INTO members (name, join_date, plan_code, end_date) VALUES
+('Ravi', '2025-01-01', '3M', '2025-04-01'),
+('Amit', '2025-02-01', '1M', '2025-03-01');
+
+INSERT INTO trainers (name, specialization, salary) VALUES
+('Rahul', 'CrossFit', 25000),
+('Suresh', 'Weight Training', 20000);
+
+INSERT INTO billing (member_id, member_name, amount, date_paid) VALUES
+(1, 'Ravi', 2500, '2025-01-01'),
+(2, 'Amit', 1000, '2025-02-01');
+</sql><current_tab id="0"/></tab_sql></sqlb_project>
