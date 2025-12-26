@@ -56,7 +56,7 @@ The system follows a **single-page application (SPA) approach**, ensuring smooth
 
 ### 🔄 Single Page Dashboard
 - Section-based navigation  
-- No page reloads  
+- No page reloads similar to react
 - Real-time updates using JavaScript and Fetch API  
 
 ---
