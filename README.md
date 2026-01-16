@@ -2,7 +2,7 @@
 
 A **full-stack Gym Management System** developed as my **first complete web development project**, integrating frontend technologies with a database-driven backend to manage real-world gym operations efficiently.
 
-This project demonstrates practical use of **HTML, CSS, JavaScript, Python (Flask), and SQLite** in a single cohesive application.
+This project demonstrates practical use of **HTML, CSS, Js, Python (Flask), and SQLite** in a single cohesive application.
 
 ---
 
