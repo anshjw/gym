@@ -22,7 +22,7 @@ The system follows a **single-page application (SPA) approach**, ensuring smooth
 - **JavaScript (Vanilla JS)** – Dynamic UI updates and API communication  
 
 ### Backend
-- **Python (Flask)** – REST API, routing, and business logic  
+- **Python (Flask)** – REST API, routing, Scripting and business logic
 
 ### Database
 - **SQLite** – Relational database for persistent data storage  
