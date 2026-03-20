@@ -73,4 +73,7 @@ Key database concepts applied:
 - Foreign keys  
 - Normalized schema  
 - Derived attributes (membership end date)  
-- Server-side validation  
+- Server-side validation
+- Dekstop Application
+- Triggers
+- Views
